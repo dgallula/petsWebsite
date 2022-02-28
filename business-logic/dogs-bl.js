@@ -32,9 +32,24 @@ const deleteById = id => {
     dogsDal.resetAll(filteredList)
 }
 
+const getOwnerDetailsById = id => {
+    let requestedOwnerObj = {}
+
+    // to do:
+    // 1. getById -> ownerId
+    // 2. get from owners table owner.id === ownerId -> row
+
+    let requestedDog = getById(id)
+
+    if (requestedDog)
+
+        return requestedOwnerObj ?? {}
+}
+
 export default {
     getAll,
     getById,
     addDog,
-    deleteById
+    deleteById,
+    getOwnerDetailsById
 } 

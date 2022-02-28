@@ -30,6 +30,13 @@ router.delete(`${baseUrl}/dogs/:id`, (req, res) => {
     res.send()
 })
 
+router.get(`${baseUrl}/dogs/ownerById/:id`, (req, res) => {
+    let id = +req.params.id
+
+    let requestedOwnerObj = dogsBL.getOwnerDetailsById(id)
+    res.send(requestedOwnerObj)
+})
+
 export {
     router
 }
