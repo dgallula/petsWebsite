@@ -1,0 +1,15 @@
+{
+  "name": "pets-website",
+  "version": "1.0.0",
+  "description": "Search for your next pet, dogs or cats.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon main"
+  },
+  "author": "Raphael",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
