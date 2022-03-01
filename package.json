@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon main"
   },
-  "author": "Raphael",
+  "author": "David Gallulla",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3"
