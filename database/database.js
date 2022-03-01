@@ -11,11 +11,13 @@ const database = {
         { id: 4, name: 'David', age: 23, phone: '+972 545554869' }
     ],
     dogs: [
-        { id: 1, name: 'Mica', age: 1.8, breed: 'Haski', ownerId: 4 },
-        { id: 2, name: 'Asia', age: 3, breed: 'Doberman', ownerId: 4 },
+        { id: 1, name: 'Mica', age: 1.8, breed: 'Haski', ownerId: 1 },
+        { id: 2, name: 'Asia', age: 3, breed: 'Doberman', ownerId: 1 },
         { id: 3, name: 'Mica', age: 8, breed: 'Garman', ownerId: 3 },
         { id: 4, name: 'Kao', age: 3, breed: 'Haski', ownerId: 4 },
-        { id: 5, name: 'Mica', age: 9, breed: 'Pitbol', ownerId: null }
+        { id: 5, name: 'Mica', age: 9, breed: 'Pitbol', ownerId: null },
+        { id: 6, name: 'Mica', age: 9, breed: 'Pitbol', ownerId: 1 },
+        { id: 7, name: 'Mica', age: 9, breed: 'Pitbol', ownerId: 1 }
     ]
 }
 

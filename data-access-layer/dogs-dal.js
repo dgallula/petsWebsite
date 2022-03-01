@@ -13,8 +13,6 @@ const addDog = newDog => {
     database.dogs.push(newDog)
 }
 
-// const 
-
 export default {
     getAll,
     resetAll,

@@ -1,4 +1,6 @@
 import dogsDal from "../data-access-layer/dogs-dal.js"
+import ownersDal from "../data-access-layer/owners-dal.js"
+import { isObjEmpty } from "../common/helper.js"
 
 const getAll = () => {
     return dogsDal.getAll()
@@ -34,16 +36,49 @@ const deleteById = id => {
 
 const getOwnerDetailsById = id => {
     let requestedOwnerObj = {}
-
-    // to do:
-    // 1. getById -> ownerId
-    // 2. get from owners table owner.id === ownerId -> row
-
     let requestedDog = getById(id)
 
-    if (requestedDog)
+    if (isObjEmpty(requestedDog) || !requestedDog.ownerId) {
+        return {}
+    }
 
-        return requestedOwnerObj ?? {}
+    requestedOwnerObj = ownersDal.getById(requestedDog.ownerId)
+
+    return requestedOwnerObj ?? {}
+}
+
+const getOwnerPhoneById = id => {
+    let ownerObj = getOwnerDetailsById(id)
+
+    return ownerObj.phone
+}
+
+const getOwnerWithMostDogs = () => {
+    let dogs = dogsDal.getAll()
+    let ownersCounter = {}
+    let max = {
+        counter: 0,
+        ownerId: -1
+    }
+
+    for (let dog of dogs) {
+        if (dog.ownerId) {
+            if (ownersCounter[dog.ownerId.toString()]) {
+                ownersCounter[dog.ownerId.toString()] += 1
+            } else {
+                ownersCounter[dog.ownerId.toString()] = 1
+            }
+
+            if (max.counter < ownersCounter[dog.ownerId.toString()]) {
+                max.ownerId = dog.ownerId.toString()
+                max.counter = ownersCounter[dog.ownerId.toString()]
+            }
+        }
+    }
+
+    let requestedOwnerObj = ownersDal.getById(+max.ownerId)
+
+    return requestedOwnerObj
 }
 
 export default {
@@ -51,5 +86,7 @@ export default {
     getById,
     addDog,
     deleteById,
-    getOwnerDetailsById
+    getOwnerDetailsById,
+    getOwnerPhoneById,
+    getOwnerWithMostDogs
 } 

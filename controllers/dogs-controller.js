@@ -9,6 +9,11 @@ router.get(`${baseUrl}/dogs`, (req, res) => {
     res.send(result)
 })
 
+router.get(`${baseUrl}/dogs/ownerWithMostDogs`, (req, res) => {
+    let requestedOwnerObj = dogsBL.getOwnerWithMostDogs()
+    res.send(requestedOwnerObj)
+})
+
 router.get(`${baseUrl}/dogs/:id`, (req, res) => {
     let id = +req.params.id
 
@@ -35,6 +40,14 @@ router.get(`${baseUrl}/dogs/ownerById/:id`, (req, res) => {
 
     let requestedOwnerObj = dogsBL.getOwnerDetailsById(id)
     res.send(requestedOwnerObj)
+})
+
+
+router.get(`${baseUrl}/dogs/ownerPhoneById/:id`, (req, res) => {
+    let id = +req.params.id
+
+    let phoneNumber = dogsBL.getOwnerPhoneById(id)
+    res.send(phoneNumber)
 })
 
 export {

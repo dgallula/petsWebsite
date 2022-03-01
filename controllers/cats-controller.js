@@ -23,6 +23,20 @@ router.post(`${baseUrl}/cats`, (req, res) => {
     res.send(result)
 })
 
+router.get(`${baseUrl}/cats/ownerById/:id`, (req, res) => {
+    let id = +req.params.id
+
+    let requestedOwnerObj = catsBL.getOwnerDetailsById(id)
+    res.send(requestedOwnerObj)
+})
+
+router.get(`${baseUrl}/cats/ownerPhoneById/:id`, (req, res) => {
+    let id = +req.params.id
+
+    let phoneNumber = catsBL.getOwnerPhoneById(id)
+    res.send(phoneNumber)
+})
+
 export {
     router
 }

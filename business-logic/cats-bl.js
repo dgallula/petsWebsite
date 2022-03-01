@@ -1,4 +1,6 @@
 import catsDal from "../data-access-layer/cats-dal.js"
+import { isObjEmpty } from "../common/helper.js"
+import ownersDal from "../data-access-layer/owners-dal.js"
 
 const getAll = () => {
     return catsDal.getAll()
@@ -25,8 +27,30 @@ const addCat = newCat => {
     return preperedCatsObj
 }
 
+const getOwnerDetailsById = id => {
+    let requestedOwnerObj = {}
+    let requestedCat = getById(id)
+
+    if (isObjEmpty(requestedCat) || !requestedCat.ownerId) {
+        return {}
+    }
+
+    requestedOwnerObj = ownersDal.getById(requestedCat.ownerId)
+
+    return requestedOwnerObj ?? {}
+}
+
+
+const getOwnerPhoneById = id => {
+    let ownerObj = getOwnerDetailsById(id)
+
+    return ownerObj.phone
+}
+
 export default {
     getAll,
     getById,
-    addCat
+    addCat,
+    getOwnerDetailsById,
+    getOwnerPhoneById
 } 
